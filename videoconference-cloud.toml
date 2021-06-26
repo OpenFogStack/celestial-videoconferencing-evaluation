@@ -1,0 +1,136 @@
+model = "SGP4"
+
+bbox = [-6.8596, -11.0020, 19.7872, 22.2767]
+interval = 5
+animation = false
+hosts = ["192.168.0.11:1969", "192.168.0.12:1969", "192.168.0.13:1969", "192.168.0.14:1969"]
+peeringhosts = ["192.168.0.11:1970", "192.168.0.12:1970", "192.168.0.13:1970", "192.168.0.14:1970"]
+database = true
+dbhost = "192.168.0.10:8000"
+
+[sgp4params]
+starttime = 2021-05-01T12:00:00+00:00
+
+[networkparams]
+islpropagation = 3.336e-6
+bandwidth = 10_000
+mincommsaltitude = 100_000
+minelevation = 40
+gstpropagation = 3.336e-6
+groundstationconnectiontype = "all"
+
+[computeparams]
+vcpu_count = 2
+mem_size_mib = 512
+ht_enabled = false
+bootparams = "quiet"
+kernel = "server-linux.bin"
+rootfs = "server.ext4"
+
+[[shell]]
+planes = 72
+sats = 22
+altitude = 550
+inclination = 53.0
+arcofascendingnodes = 360.0
+eccentricity = 0.0
+
+[[shell]]
+planes = 32
+sats = 50
+altitude = 1110
+inclination = 53.8
+arcofascendingnodes = 360.0
+eccentricity = 0.0
+
+[[shell]]
+planes = 8
+sats = 50
+altitude = 1130
+inclination = 74.0
+arcofascendingnodes = 360.0
+eccentricity = 0.0
+
+[[shell]]
+planes = 5
+sats = 75
+altitude = 1275
+inclination = 81.0
+arcofascendingnodes = 360.0
+eccentricity = 0.0
+
+[[shell]]
+planes = 6
+sats = 75
+altitude = 1325
+inclination = 70.0
+arcofascendingnodes = 360.0
+eccentricity = 0.0
+
+[[groundstation]]
+name = "tracker"
+# Azure South Africa North (Johannesburg)
+lat = -26.189948
+long = 28.031616
+
+[groundstation.computeparams]
+vcpu_count = 4
+mem_size_mib = 4096
+kernel = "client-linux.bin"
+rootfs = "alt-tracker.ext4"
+bootparams = ""
+
+[[groundstation]]
+#name = "Accra"
+name = "1"
+lat = 5.548854
+long = -0.220214
+
+[groundstation.computeparams]
+vcpu_count = 4
+mem_size_mib = 4096
+kernel = "client-linux.bin"
+rootfs = "client.ext4"
+bootparams = ""
+hostaffinity = [2]
+
+[[groundstation]]
+#name = "Abuja"
+name = "2"
+lat = 9.054770
+long = 7.483895
+
+[groundstation.computeparams]
+vcpu_count = 4
+mem_size_mib = 4096
+kernel = "client-linux.bin"
+rootfs = "client.ext4"
+bootparams = ""
+hostaffinity = [2]
+
+[[groundstation]]
+#name = "Yaounde"
+name = "3"
+lat = 3.872887
+long = 11.520264
+
+[groundstation.computeparams]
+vcpu_count = 4
+mem_size_mib = 4096
+kernel = "client-linux.bin"
+rootfs = "client.ext4"
+bootparams = ""
+hostaffinity = [2]
+
+[[groundstation]]
+name = "server"
+# Azure South Africa North (Johannesburg)
+lat = -26.189948
+long = 28.031616
+
+[groundstation.computeparams]
+vcpu_count = 4
+mem_size_mib = 4096
+kernel = "server-linux.bin"
+rootfs = "server.ext4"
+bootparams = ""

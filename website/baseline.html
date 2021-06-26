@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width" />
+
+    <title>Celestial Evaluation: Baseline Tests</title>
+  </head>
+
+  <style>
+    table {
+      border-collapse: collapse;
+      border-style: hidden;
+      padding: 5px;
+      min-width: 100vw;
+    }
+    table td {
+      border: 1px solid black;
+      text-align: center;
+      padding: 5px;
+    }
+    table th {
+      border: 1px solid black;
+      text-align: center;
+      padding: 5px;
+    }
+  </style>
+
+  <body>
+    <h1>
+      Celestial: A Virtual Testbed for the LEO Edge <a href="./index.html">↩</a>
+    </h1>
+    <h2>Baseline Tests</h2>
+    <p>
+      Before deploying our application Celestial, we perform baseline tests to
+      measure the impact of processing delay on application QoS.
+    </p>
+    <ul>
+      <li><a href="#latency">Latency in ms</a></li>
+      <li><a href="#latency_r">Latency in ms (1s Rolling Median)</a></li>
+    </ul>
+
+    <h3 id="latency">Latency<a href="#">↩</a></h3>
+
+    <div style="overflow-x: auto">
+      <table>
+        <thead>
+          <th>Path</th>
+          <th>Latency in ms</th>
+        </thead>
+        <tbody>
+          <tr>
+            <td>Accra - Abuja</td>
+            <td>
+              <a href="./img/baseline/baseline-1-2.png">
+                <img src="./img/baseline/baseline-1-2.png" />
+              </a>
+            </td>
+          </tr>
+          <tr>
+            <td>Accra - Yaoundé</td>
+            <td>
+              <a href="./img/baseline/baseline-1-3.png">
+                <img src="./img/baseline/baseline-1-3.png" />
+              </a>
+            </td>
+          </tr>
+          <tr>
+            <td>Abuja - Accra</td>
+            <td>
+              <a href="./img/baseline/baseline-2-1.png">
+                <img src="./img/baseline/baseline-2-1.png" />
+              </a>
+            </td>
+          </tr>
+          <tr>
+            <td>Abuja - Yaoundé</td>
+            <td>
+              <a href="./img/baseline/baseline-2-3.png">
+                <img src="./img/baseline/baseline-2-3.png" />
+              </a>
+            </td>
+          </tr>
+          <tr>
+            <td>Yaoundé - Accra</td>
+            <td>
+              <a href="./img/baseline/baseline-3-1.png">
+                <img src="./img/baseline/baseline-3-1.png" />
+              </a>
+            </td>
+          </tr>
+          <tr>
+            <td>Yaoundé - Abuja</td>
+            <td>
+              <a href="./img/baseline/baseline-3-2.png">
+                <img src="./img/baseline/baseline-3-2.png" />
+              </a>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <h3 id="latency_r">Latency in ms (1s Rolling Median)<a href="#">↩</a></h3>
+
+    <div style="overflow-x: auto">
+      <table>
+        <thead>
+          <th>Path</th>
+          <th>Latency in ms (1s Rolling Median)</th>
+        </thead>
+        <tbody>
+          <tr>
+            <td>Accra - Abuja</td>
+            <td>
+              <a href="./img/baseline/baseline-rolling-1-2.png">
+                <img src="./img/baseline/baseline-rolling-1-2.png" />
+              </a>
+            </td>
+          </tr>
+          <tr>
+            <td>Accra - Yaoundé</td>
+            <td>
+              <a href="./img/baseline/baseline-rolling-1-3.png">
+                <img src="./img/baseline/baseline-rolling-1-3.png" />
+              </a>
+            </td>
+          </tr>
+          <tr>
+            <td>Abuja - Accra</td>
+            <td>
+              <a href="./img/baseline/baseline-rolling-2-1.png">
+                <img src="./img/baseline/baseline-rolling-2-1.png" />
+              </a>
+            </td>
+          </tr>
+          <tr>
+            <td>Abuja - Yaoundé</td>
+            <td>
+              <a href="./img/baseline/baseline-rolling-2-3.png">
+                <img src="./img/baseline/baseline-rolling-2-3.png" />
+              </a>
+            </td>
+          </tr>
+          <tr>
+            <td>Yaoundé - Accra</td>
+            <td>
+              <a href="./img/baseline/baseline-rolling-3-1.png">
+                <img src="./img/baseline/baseline-rolling-3-1.png" />
+              </a>
+            </td>
+          </tr>
+          <tr>
+            <td>Yaoundé - Abuja</td>
+            <td>
+              <a href="./img/baseline/baseline-rolling-3-2.png">
+                <img src="./img/baseline/baseline-rolling-3-2.png" />
+              </a>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+    <p>©2021 the Celestial authors</p>
+  </body>
+</html>

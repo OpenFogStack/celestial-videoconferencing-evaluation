@@ -1,0 +1,290 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width" />
+
+    <title>Celestial Evaluation: QoS Results</title>
+  </head>
+
+  <style>
+    table {
+      border-collapse: collapse;
+      border-style: hidden;
+      padding: 5px;
+      min-width: 100vw;
+    }
+    table td {
+      border: 1px solid black;
+      text-align: center;
+      padding: 5px;
+    }
+    table th {
+      border: 1px solid black;
+      text-align: center;
+      padding: 5px;
+    }
+  </style>
+
+  <body>
+    <h1>
+      Celestial: A Virtual Testbed for the LEO Edge <a href="./index.html">↩</a>
+    </h1>
+    <h2>QoS Results</h2>
+    <p>
+      In our experiments on Celestial, we measure QoS of our example
+      application.
+    </p>
+    <ul>
+      <li><a href="#satellite">Satellite Server</a></li>
+      <li><a href="#cloud">Cloud Datacenter</a></li>
+    </ul>
+
+    <h3 id="satellite">Satellite Server<a href="#">↩</a></h3>
+
+    <div style="overflow-x: auto">
+      <table>
+        <thead>
+          <th>Path</th>
+          <th>Run 1</th>
+          <th>Run 2</th>
+          <th>Run 3</th>
+        </thead>
+        <tbody>
+          <tr>
+            <td>Accra - Abuja</td>
+            <td>
+              <a href="./img/cdfs/cdf-satellite-1-2-1.png">
+                <img src="./img/cdfs/cdf-satellite-1-2-1.png" />
+              </a>
+            </td>
+            <td>
+              <a href="./img/cdfs/cdf-satellite-1-2-2.png">
+                <img src="./img/cdfs/cdf-satellite-1-2-2.png" />
+              </a>
+            </td>
+            <td>
+              <a href="./img/cdfs/cdf-satellite-1-2-3.png">
+                <img src="./img/cdfs/cdf-satellite-1-2-3.png" />
+              </a>
+            </td>
+          </tr>
+          <tr>
+            <td>Accra - Yaoundé</td>
+            <td>
+              <a href="./img/cdfs/cdf-satellite-1-3-1.png">
+                <img src="./img/cdfs/cdf-satellite-1-3-1.png" />
+              </a>
+            </td>
+            <td>
+              <a href="./img/cdfs/cdf-satellite-1-3-2.png">
+                <img src="./img/cdfs/cdf-satellite-1-3-2.png" />
+              </a>
+            </td>
+            <td>
+              <a href="./img/cdfs/cdf-satellite-1-3-3.png">
+                <img src="./img/cdfs/cdf-satellite-1-3-3.png" />
+              </a>
+            </td>
+          </tr>
+          <tr>
+            <td>Abuja - Accra</td>
+            <td>
+              <a href="./img/cdfs/cdf-satellite-2-1-1.png">
+                <img src="./img/cdfs/cdf-satellite-2-1-1.png" />
+              </a>
+            </td>
+            <td>
+              <a href="./img/cdfs/cdf-satellite-2-1-2.png">
+                <img src="./img/cdfs/cdf-satellite-2-1-2.png" />
+              </a>
+            </td>
+            <td>
+              <a href="./img/cdfs/cdf-satellite-2-1-3.png">
+                <img src="./img/cdfs/cdf-satellite-2-1-3.png" />
+              </a>
+            </td>
+          </tr>
+          <tr>
+            <td>Abuja - Yaoundé</td>
+            <td>
+              <a href="./img/cdfs/cdf-satellite-2-3-1.png">
+                <img src="./img/cdfs/cdf-satellite-2-3-1.png" />
+              </a>
+            </td>
+            <td>
+              <a href="./img/cdfs/cdf-satellite-2-3-2.png">
+                <img src="./img/cdfs/cdf-satellite-2-3-2.png" />
+              </a>
+            </td>
+            <td>
+              <a href="./img/cdfs/cdf-satellite-2-3-3.png">
+                <img src="./img/cdfs/cdf-satellite-2-3-3.png" />
+              </a>
+            </td>
+          </tr>
+          <tr>
+            <td>Yaoundé - Accra</td>
+            <td>
+              <a href="./img/cdfs/cdf-satellite-3-1-1.png">
+                <img src="./img/cdfs/cdf-satellite-3-1-1.png" />
+              </a>
+            </td>
+            <td>
+              <a href="./img/cdfs/cdf-satellite-3-1-2.png">
+                <img src="./img/cdfs/cdf-satellite-3-1-2.png" />
+              </a>
+            </td>
+            <td>
+              <a href="./img/cdfs/cdf-satellite-3-1-3.png">
+                <img src="./img/cdfs/cdf-satellite-3-1-3.png" />
+              </a>
+            </td>
+          </tr>
+          <tr>
+            <td>Yaoundé - Abuja</td>
+            <td>
+              <a href="./img/cdfs/cdf-satellite-3-2-1.png">
+                <img src="./img/cdfs/cdf-satellite-3-2-1.png" />
+              </a>
+            </td>
+            <td>
+              <a href="./img/cdfs/cdf-satellite-3-2-2.png">
+                <img src="./img/cdfs/cdf-satellite-3-2-2.png" />
+              </a>
+            </td>
+            <td>
+              <a href="./img/cdfs/cdf-satellite-3-2-3.png">
+                <img src="./img/cdfs/cdf-satellite-3-2-3.png" />
+              </a>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <h3 id="cloud">Cloud Datacenter<a href="#">↩</a></h3>
+
+    <div style="overflow-x: auto">
+      <table>
+        <thead>
+          <th>Path</th>
+          <th>Run 1</th>
+          <th>Run 2</th>
+          <th>Run 3</th>
+        </thead>
+        <tbody>
+          <tr>
+            <td>Accra - Abuja</td>
+            <td>
+              <a href="./img/cdfs/cdf-server-1-2-1.png">
+                <img src="./img/cdfs/cdf-server-1-2-1.png" />
+              </a>
+            </td>
+            <td>
+              <a href="./img/cdfs/cdf-server-1-2-2.png">
+                <img src="./img/cdfs/cdf-server-1-2-2.png" />
+              </a>
+            </td>
+            <td>
+              <a href="./img/cdfs/cdf-server-1-2-3.png">
+                <img src="./img/cdfs/cdf-server-1-2-3.png" />
+              </a>
+            </td>
+          </tr>
+          <tr>
+            <td>Accra - Yaoundé</td>
+            <td>
+              <a href="./img/cdfs/cdf-server-1-3-1.png">
+                <img src="./img/cdfs/cdf-server-1-3-1.png" />
+              </a>
+            </td>
+            <td>
+              <a href="./img/cdfs/cdf-server-1-3-2.png">
+                <img src="./img/cdfs/cdf-server-1-3-2.png" />
+              </a>
+            </td>
+            <td>
+              <a href="./img/cdfs/cdf-server-1-3-3.png">
+                <img src="./img/cdfs/cdf-server-1-3-3.png" />
+              </a>
+            </td>
+          </tr>
+          <tr>
+            <td>Abuja - Accra</td>
+            <td>
+              <a href="./img/cdfs/cdf-server-2-1-1.png">
+                <img src="./img/cdfs/cdf-server-2-1-1.png" />
+              </a>
+            </td>
+            <td>
+              <a href="./img/cdfs/cdf-server-2-1-2.png">
+                <img src="./img/cdfs/cdf-server-2-1-2.png" />
+              </a>
+            </td>
+            <td>
+              <a href="./img/cdfs/cdf-server-2-1-3.png">
+                <img src="./img/cdfs/cdf-server-2-1-3.png" />
+              </a>
+            </td>
+          </tr>
+          <tr>
+            <td>Abuja - Yaoundé</td>
+            <td>
+              <a href="./img/cdfs/cdf-server-2-3-1.png">
+                <img src="./img/cdfs/cdf-server-2-3-1.png" />
+              </a>
+            </td>
+            <td>
+              <a href="./img/cdfs/cdf-server-2-3-2.png">
+                <img src="./img/cdfs/cdf-server-2-3-2.png" />
+              </a>
+            </td>
+            <td>
+              <a href="./img/cdfs/cdf-server-2-3-3.png">
+                <img src="./img/cdfs/cdf-server-2-3-3.png" />
+              </a>
+            </td>
+          </tr>
+          <tr>
+            <td>Yaoundé - Accra</td>
+            <td>
+              <a href="./img/cdfs/cdf-server-3-1-1.png">
+                <img src="./img/cdfs/cdf-server-3-1-1.png" />
+              </a>
+            </td>
+            <td>
+              <a href="./img/cdfs/cdf-server-3-1-2.png">
+                <img src="./img/cdfs/cdf-server-3-1-2.png" />
+              </a>
+            </td>
+            <td>
+              <a href="./img/cdfs/cdf-server-3-1-3.png">
+                <img src="./img/cdfs/cdf-server-3-1-3.png" />
+              </a>
+            </td>
+          </tr>
+          <tr>
+            <td>Yaoundé - Abuja</td>
+            <td>
+              <a href="./img/cdfs/cdf-server-3-2-1.png">
+                <img src="./img/cdfs/cdf-server-3-2-1.png" />
+              </a>
+            </td>
+            <td>
+              <a href="./img/cdfs/cdf-server-3-2-2.png">
+                <img src="./img/cdfs/cdf-server-3-2-2.png" />
+              </a>
+            </td>
+            <td>
+              <a href="./img/cdfs/cdf-server-3-2-3.png">
+                <img src="./img/cdfs/cdf-server-3-2-3.png" />
+              </a>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+    <p>©2021 the Celestial authors</p>
+  </body>
+</html>

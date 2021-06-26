@@ -1,0 +1,407 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width" />
+
+    <title>Reproducibility Analysis</title>
+  </head>
+
+  <style>
+    table {
+      border-collapse: collapse;
+      border-style: hidden;
+      padding: 5px;
+      min-width: 100vw;
+    }
+    table td {
+      border: 1px solid black;
+      text-align: center;
+      padding: 5px;
+    }
+    table th {
+      border: 1px solid black;
+      text-align: center;
+      padding: 5px;
+    }
+  </style>
+  <body>
+    <h1>
+      Celestial: A Virtual Testbed for the LEO Edge <a href="./index.html">↩</a>
+    </h1>
+    <h2>Reproducibility Analysis</h2>
+    <p>
+      We repeat each of our experiments three times. We are thus able to see
+      whether Celestial provides a repeatable environment for reproducible tests
+      and benchmarks.
+    </p>
+    <ul>
+      <li>
+        <a href="#sat">Satellite Server</a>:
+        <ul>
+          <li>
+            <a href="#sat_latency_r">Latency in ms (1s Rolling Median)</a>
+          </li>
+          <li>
+            <a href="#sat_latency_rlog10"
+              >Latency in ms (log10 of 1s Rolling Median)</a
+            >
+          </li>
+        </ul>
+      </li>
+      <li>
+        <a href="#cloud">Cloud Datacenter</a>:
+        <ul>
+          <li>
+            <a href="#cloud_latency_r">Latency in ms (1s Rolling Median)</a>
+          </li>
+          <li>
+            <a href="#cloud_latency_rlog10"
+              >Latency in ms (log10 of 1s Rolling Median)</a
+            >
+          </li>
+        </ul>
+      </li>
+    </ul>
+    <h3 id="sat">Satellite Server<a href="#">↩</a></h3>
+    <h4 id="sat_latency_r">
+      Latency in ms (1s Rolling Median)<a href="#sat">↩</a>
+    </h4>
+    <div style="overflow-x: auto">
+      <table>
+        <thead>
+          <th>Path</th>
+          <th>Latency in ms (1s Rolling Median)</th>
+        </thead>
+        <tbody>
+          <tr>
+            <td>Accra - Abuja</td>
+            <td>
+              <a href="./img/reproducibility/reproducibility-satellite-1-2.png">
+                <img
+                  src="./img/reproducibility/reproducibility-satellite-1-2.png"
+                />
+              </a>
+            </td>
+          </tr>
+
+          <tr>
+            <td>Accra - Yaoundé</td>
+            <td>
+              <a href="./img/reproducibility/reproducibility-satellite-1-3.png">
+                <img
+                  src="./img/reproducibility/reproducibility-satellite-1-3.png"
+                />
+              </a>
+            </td>
+          </tr>
+
+          <tr>
+            <td>Abuja - Accra</td>
+            <td>
+              <a href="./img/reproducibility/reproducibility-satellite-2-1.png">
+                <img
+                  src="./img/reproducibility/reproducibility-satellite-2-1.png"
+                />
+              </a>
+            </td>
+          </tr>
+
+          <tr>
+            <td>Abuja - Yaoundé</td>
+            <td>
+              <a href="./img/reproducibility/reproducibility-satellite-2-3.png">
+                <img
+                  src="./img/reproducibility/reproducibility-satellite-2-3.png"
+                />
+              </a>
+            </td>
+          </tr>
+
+          <tr>
+            <td>Yaoundé - Accra</td>
+            <td>
+              <a href="./img/reproducibility/reproducibility-satellite-3-1.png">
+                <img
+                  src="./img/reproducibility/reproducibility-satellite-3-1.png"
+                />
+              </a>
+            </td>
+          </tr>
+
+          <tr>
+            <td>Yaoundé - Abuja</td>
+            <td>
+              <a href="./img/reproducibility/reproducibility-satellite-3-2.png">
+                <img
+                  src="./img/reproducibility/reproducibility-satellite-3-2.png"
+                />
+              </a>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+    <h4 id="sat_latency_rlog10">
+      Latency in ms (log10 of 1s Rolling Median)<a href="#sat">↩</a>
+    </h4>
+    <div style="overflow-x: auto">
+      <table>
+        <thead>
+          <th>Path</th>
+          <th>Latency in ms (log10 of 1s Rolling Median)</th>
+        </thead>
+        <tbody>
+          <tr>
+            <td>Accra - Abuja</td>
+            <td>
+              <a
+                href="./img/reproducibility/reproducibility-log10-satellite-1-2.png"
+              >
+                <img
+                  src="./img/reproducibility/reproducibility-log10-satellite-1-2.png"
+                />
+              </a>
+            </td>
+          </tr>
+
+          <tr>
+            <td>Accra - Yaoundé</td>
+            <td>
+              <a
+                href="./img/reproducibility/reproducibility-log10-satellite-1-3.png"
+              >
+                <img
+                  src="./img/reproducibility/reproducibility-log10-satellite-1-3.png"
+                />
+              </a>
+            </td>
+          </tr>
+
+          <tr>
+            <td>Abuja - Accra</td>
+            <td>
+              <a
+                href="./img/reproducibility/reproducibility-log10-satellite-2-1.png"
+              >
+                <img
+                  src="./img/reproducibility/reproducibility-log10-satellite-2-1.png"
+                />
+              </a>
+            </td>
+          </tr>
+
+          <tr>
+            <td>Abuja - Yaoundé</td>
+            <td>
+              <a
+                href="./img/reproducibility/reproducibility-log10-satellite-2-3.png"
+              >
+                <img
+                  src="./img/reproducibility/reproducibility-log10-satellite-2-3.png"
+                />
+              </a>
+            </td>
+          </tr>
+
+          <tr>
+            <td>Yaoundé - Accra</td>
+            <td>
+              <a
+                href="./img/reproducibility/reproducibility-log10-satellite-3-1.png"
+              >
+                <img
+                  src="./img/reproducibility/reproducibility-log10-satellite-3-1.png"
+                />
+              </a>
+            </td>
+          </tr>
+
+          <tr>
+            <td>Yaoundé - Abuja</td>
+            <td>
+              <a
+                href="./img/reproducibility/reproducibility-log10-satellite-3-2.png"
+              >
+                <img
+                  src="./img/reproducibility/reproducibility-log10-satellite-3-2.png"
+                />
+              </a>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+    <h3 id="cloud">Cloud Datacenter<a href="#">↩</a></h3>
+    <h4 id="cloud_latency_r">
+      Latency in ms (1s Rolling Median)<a href="#cloud">↩</a>
+    </h4>
+    <div style="overflow-x: auto">
+      <table>
+        <thead>
+          <th>Path</th>
+          <th>Latency in ms (1s Rolling Median)</th>
+        </thead>
+        <tbody>
+          <tr>
+            <td>Accra - Abuja</td>
+            <td>
+              <a href="./img/reproducibility/reproducibility-server-1-2.png">
+                <img
+                  src="./img/reproducibility/reproducibility-server-1-2.png"
+                />
+              </a>
+            </td>
+          </tr>
+
+          <tr>
+            <td>Accra - Yaoundé</td>
+            <td>
+              <a href="./img/reproducibility/reproducibility-server-1-3.png">
+                <img
+                  src="./img/reproducibility/reproducibility-server-1-3.png"
+                />
+              </a>
+            </td>
+          </tr>
+
+          <tr>
+            <td>Abuja - Accra</td>
+            <td>
+              <a href="./img/reproducibility/reproducibility-server-2-1.png">
+                <img
+                  src="./img/reproducibility/reproducibility-server-2-1.png"
+                />
+              </a>
+            </td>
+          </tr>
+
+          <tr>
+            <td>Abuja - Yaoundé</td>
+            <td>
+              <a href="./img/reproducibility/reproducibility-server-2-3.png">
+                <img
+                  src="./img/reproducibility/reproducibility-server-2-3.png"
+                />
+              </a>
+            </td>
+          </tr>
+
+          <tr>
+            <td>Yaoundé - Accra</td>
+            <td>
+              <a href="./img/reproducibility/reproducibility-server-3-1.png">
+                <img
+                  src="./img/reproducibility/reproducibility-server-3-1.png"
+                />
+              </a>
+            </td>
+          </tr>
+
+          <tr>
+            <td>Yaoundé - Abuja</td>
+            <td>
+              <a href="./img/reproducibility/reproducibility-server-3-2.png">
+                <img
+                  src="./img/reproducibility/reproducibility-server-3-2.png"
+                />
+              </a>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+    <h4 id="cloud_latency_rlog10">
+      Latency in ms (log10 of 1s Rolling Median)<a href="#cloud">↩</a>
+    </h4>
+    <div style="overflow-x: auto">
+      <table>
+        <thead>
+          <th>Path</th>
+          <th>Latency in ms (log10 of 1s Rolling Median)</th>
+        </thead>
+        <tbody>
+          <tr>
+            <td>Accra - Abuja</td>
+            <td>
+              <a
+                href="./img/reproducibility/reproducibility-log10-server-1-2.png"
+              >
+                <img
+                  src="./img/reproducibility/reproducibility-log10-server-1-2.png"
+                />
+              </a>
+            </td>
+          </tr>
+
+          <tr>
+            <td>Accra - Yaoundé</td>
+            <td>
+              <a
+                href="./img/reproducibility/reproducibility-log10-server-1-3.png"
+              >
+                <img
+                  src="./img/reproducibility/reproducibility-log10-server-1-3.png"
+                />
+              </a>
+            </td>
+          </tr>
+
+          <tr>
+            <td>Abuja - Accra</td>
+            <td>
+              <a
+                href="./img/reproducibility/reproducibility-log10-server-2-1.png"
+              >
+                <img
+                  src="./img/reproducibility/reproducibility-log10-server-2-1.png"
+                />
+              </a>
+            </td>
+          </tr>
+
+          <tr>
+            <td>Abuja - Yaoundé</td>
+            <td>
+              <a
+                href="./img/reproducibility/reproducibility-log10-server-2-3.png"
+              >
+                <img
+                  src="./img/reproducibility/reproducibility-log10-server-2-3.png"
+                />
+              </a>
+            </td>
+          </tr>
+
+          <tr>
+            <td>Yaoundé - Accra</td>
+            <td>
+              <a
+                href="./img/reproducibility/reproducibility-log10-server-3-1.png"
+              >
+                <img
+                  src="./img/reproducibility/reproducibility-log10-server-3-1.png"
+                />
+              </a>
+            </td>
+          </tr>
+
+          <tr>
+            <td>Yaoundé - Abuja</td>
+            <td>
+              <a
+                href="./img/reproducibility/reproducibility-log10-server-3-2.png"
+              >
+                <img
+                  src="./img/reproducibility/reproducibility-log10-server-3-2.png"
+                />
+              </a>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <p>©2021 the Celestial authors</p>
+  </body>
+</html>

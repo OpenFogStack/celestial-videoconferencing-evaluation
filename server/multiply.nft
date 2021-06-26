@@ -1,0 +1,47 @@
+define HOST_A=%%%HOST%%%
+define HOST_B1=10.255.0.6
+define HOST_B2=10.255.0.10
+define HOST_B3=10.255.0.14
+
+table ip multiply
+delete table ip multiply
+
+table ip multiply {
+    chain c {
+        type filter hook prerouting priority -300; policy accept;
+        iif != vethgw ip saddr $HOST_B1 ip saddr set $HOST_A goto cmultiply1
+        iif != vethgw ip saddr $HOST_B2 ip saddr set $HOST_A goto cmultiply2
+        iif != vethgw ip saddr $HOST_B3 ip saddr set $HOST_A goto cmultiply3
+    }
+
+    chain cmultiply1 {
+        jump cdnatdup1
+        drop
+    }
+
+    chain cdnatdup1 {
+        ip daddr set $HOST_B2 dup to $HOST_A device vethinj
+        ip daddr set $HOST_B3 dup to $HOST_A device vethinj
+    }
+
+    chain cmultiply2 {
+        jump cdnatdup2
+        drop
+    }
+
+    chain cdnatdup2 {
+        ip daddr set $HOST_B1 dup to $HOST_A device vethinj
+        ip daddr set $HOST_B3 dup to $HOST_A device vethinj
+    }
+
+    chain cmultiply3 {
+        jump cdnatdup3
+        drop
+    }
+
+    chain cdnatdup3 {
+        ip daddr set $HOST_B1 dup to $HOST_A device vethinj
+        ip daddr set $HOST_B2 dup to $HOST_A device vethinj
+    }
+
+}
