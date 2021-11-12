@@ -2,6 +2,7 @@
 .idea/
 .mypy_cache/
 *.ext4
+*.img
 *.bin
 
 ~$*

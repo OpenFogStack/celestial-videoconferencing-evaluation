@@ -46,8 +46,8 @@ To try out the videoconferencing evaluation, you need:
 
 First, build the root filesystems for the three components.
 Simply use `make` to build everything.
-You will end up with `tracker.ext4`, `alt-tracker.ext4`, `server.ext4`, and
-`client.ext4` in this folder.
+You will end up with `tracker.img`, `alt-tracker.img`, `server.img`, and
+`client.img` in this folder.
 
 ### Building Kernel
 

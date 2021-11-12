@@ -2,13 +2,16 @@ import pandas as pd
 import numpy as np
 import os
 import seaborn as sns
+import matplotlib
 import matplotlib.axes
 from matplotlib.colors import ListedColormap
 
 current_palette = sns.color_palette()
 cmap = ListedColormap(sns.color_palette(current_palette).as_hex())
 
-sns.set(rc={'figure.figsize':(20,4)}, style='whitegrid', font='CMU Serif')
+sns.set(rc={'figure.figsize':(20,4)}, style='whitegrid', font='CMU Sans Serif')
+matplotlib.rcParams['pdf.fonttype'] = 42
+matplotlib.rcParams['ps.fonttype'] = 42
 
 def save_fig(ax: matplotlib.axes, folder: str, suffix: str, format: str="pdf") -> None:
     fig = ax.get_figure()
@@ -105,11 +108,12 @@ df_paper.reset_index(inplace=True, drop=True) # optionally reset index
 df_paper["Time"] = df_paper["Time"]/1e9
 df_paper
 
-
+sns.set(rc={'figure.figsize':(10,4)}, font_scale=1.0, style='whitegrid', font='CMU Sans Serif')
 ax_paper = sns.lineplot(x="Time", y="Latency_Rolling", data=df_paper[(df_paper["Experiment"] == "server") & (df_paper["Path"] == "3-1")], hue="Run", palette=sns.color_palette("Dark2", n_colors=3), hue_order=["1", "2", "3"], ci=None)
 ax_paper.set_xlabel("t [s]")
 ax_paper.set_ylabel("Latency (1s Rolling Mean) [s]")
 save_fig(ax_paper, "./paper/", "reproducibility-" + "server" + "-" + "3-2", format="pdf")
+sns.set(rc={'figure.figsize':(20,4)}, font_scale=1.0, style='whitegrid', font='CMU Sans Serif')
 
 for experiment in ["satellite", "server"]:
         for path in ["1-2", "1-3", "2-3", "2-1", "3-1", "3-2"]:
