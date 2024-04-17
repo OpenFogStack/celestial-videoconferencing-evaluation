@@ -6,8 +6,6 @@ counter) accessible from both the client and the server.
 from __future__ import division
 import socket
 import time
-import socket
-import time
 import pickle
 import typing
 import http.server
@@ -19,13 +17,13 @@ import threading as td
 
 target_address_pipe_in, target_address_pipe_out = mp.Pipe()
 
-class Handler(http.server.BaseHTTPRequestHandler):
 
+class Handler(http.server.BaseHTTPRequestHandler):
     def do_POST(self) -> None:
         form = cgi.FieldStorage(
             fp=self.rfile,
-            headers=self.headers, # type: ignore
-            environ={"REQUEST_METHOD": "POST"}
+            headers=self.headers,  # type: ignore
+            environ={"REQUEST_METHOD": "POST"},
         )
 
         s = form.getvalue("server")
@@ -36,8 +34,8 @@ class Handler(http.server.BaseHTTPRequestHandler):
         self.end_headers()
         self.wfile.write(b"OK\n")
 
-class OneWayMeasurement():
 
+class OneWayMeasurement:
     description = """Measure one-way UDP packet latency time.
 On your server host, run:
     $ ./quack2.py --server
@@ -56,7 +54,10 @@ the latencies of each packet received from the client.
         while True:
             target_address = target_address_pipe.recv()
             if self.target_port is not None:
-                print("Updating target address to %s:%d" % (target_address, self.target_port))
+                print(
+                    "Updating target address to %s:%d"
+                    % (target_address, self.target_port)
+                )
             if self.target_address != target_address:
                 self.target_address = None
 
@@ -72,12 +73,12 @@ the latencies of each packet received from the client.
         send_rate_kbytes_per_s.
         """
 
-        #send_rate_bytes_per_s = send_rate_kbytes_per_s * 1000
+        # send_rate_bytes_per_s = send_rate_kbytes_per_s * 1000
         n_bytes = 0
-        #packet_rate = send_rate_bytes_per_s / packet_len
-        #packet_interval = 1 / packet_rate
+        # packet_rate = send_rate_bytes_per_s / packet_len
+        # packet_interval = 1 / packet_rate
 
-        #print("Sending %d %d-byte packets at about %d kB/s..." %(n_packets, packet_len, send_rate_kbytes_per_s))
+        # print("Sending %d %d-byte packets at about %d kB/s..." %(n_packets, packet_len, send_rate_kbytes_per_s))
 
         print("Waiting for a target address...")
 
@@ -86,12 +87,10 @@ the latencies of each packet received from the client.
 
         print("Got a target address...")
 
-
         send_start_seconds = time.time()
-        #inter_packet_sleep_times_ms = []
+        # inter_packet_sleep_times_ms = []
 
         for packet_n in range(n_packets):
-
             while self.target_address == None:
                 pass
 
@@ -115,8 +114,10 @@ the latencies of each packet received from the client.
             # I don't know why, but this still doesn't yield exactly the desired
             # send rate. But eh, it's good enough.
             tx_time_seconds = tx_end_seconds - tx_start_seconds
-            sleep_time_seconds = self.workload_deltas[packet_n % self.workload_length] - tx_time_seconds
-            #inter_packet_sleep_times_ms.append("%.3f" % (sleep_time_seconds * 1000))
+            sleep_time_seconds = (
+                self.workload_deltas[packet_n % self.workload_length] - tx_time_seconds
+            )
+            # inter_packet_sleep_times_ms.append("%.3f" % (sleep_time_seconds * 1000))
             if sleep_time_seconds > 0:
                 time.sleep(sleep_time_seconds)
         send_end_seconds = time.time()
@@ -125,30 +126,53 @@ the latencies of each packet received from the client.
 
         total_send_duration_seconds = send_end_seconds - send_start_seconds
         bytes_per_second = n_bytes / total_send_duration_seconds
-        print("(Actually sent packets at %d kB/s: %d bytes for %.1f seconds)" % (bytes_per_second / 1e3, n_bytes, total_send_duration_seconds))
+        print(
+            "(Actually sent packets at %d kB/s: %d bytes for %.1f seconds)"
+            % (bytes_per_second / 1e3, n_bytes, total_send_duration_seconds)
+        )
 
         self.sock_out.close()
 
     @staticmethod
-    def save_packet_latencies(packetn_latency_tuples: typing.Tuple[typing.List[int],typing.List[int],typing.List[int],typing.List[float],typing.List[float],typing.List[float]], n_packets_expected: int, output_filename: str) -> None:
+    def save_packet_latencies(
+        packetn_latency_tuples: typing.Tuple[
+            typing.List[int],
+            typing.List[int],
+            typing.List[int],
+            typing.List[float],
+            typing.List[float],
+            typing.List[float],
+        ],
+        n_packets_expected: int,
+        output_filename: str,
+    ) -> None:
         """
         Save latencies of received packets to a file, along with the total
         number of packets send in the first place.
         """
         with open(output_filename, "w") as out_file:
-            #out_file.write("%d\n" % n_packets_expected)
+            # out_file.write("%d\n" % n_packets_expected)
             out_file.write("id,packet_n,packet_len,latency,send_time,recv_time\n")
             for i in range(len(packetn_latency_tuples[0])):
                 id = packetn_latency_tuples[0][i]
                 packet_n = packetn_latency_tuples[1][i]
                 packet_len = packetn_latency_tuples[2][i]
                 latency = packetn_latency_tuples[3][i]
-                send_time = (packetn_latency_tuples[4][i] * 1e9)
-                recv_time = (packetn_latency_tuples[5][i] * 1e9)
-                out_file.write("%d,%d,%d,%.2f,%.0f,%.0f\n" % (id, packet_n, packet_len,latency, send_time, recv_time))
+                send_time = packetn_latency_tuples[4][i] * 1e9
+                recv_time = packetn_latency_tuples[5][i] * 1e9
+                out_file.write(
+                    "%d,%d,%d,%.2f,%.0f,%.0f\n"
+                    % (id, packet_n, packet_len, latency, send_time, recv_time)
+                )
 
-    def run_client(self, id: int, listen_port: int, http_port: int, n_packets: int, workload_file: str) -> None:
-
+    def run_client(
+        self,
+        id: int,
+        listen_port: int,
+        http_port: int,
+        n_packets: int,
+        workload_file: str,
+    ) -> None:
         total_packet_len = 0
         total_workload_duration = 0.0
 
@@ -186,7 +210,9 @@ the latencies of each packet received from the client.
 
         print("Started HTTP server on :%d" % (http_port))
 
-        controlThread = td.Thread(target=self.update_target, args=[target_address_pipe_out])
+        controlThread = td.Thread(
+            target=self.update_target, args=[target_address_pipe_out]
+        )
         controlThread.start()
 
         print("Started control thread...")
@@ -208,14 +234,19 @@ the latencies of each packet received from the client.
         payload = pickle.dumps((id, packet_n, send_time_seconds))
         return payload
 
-    def run_server(self, n_packets_expected: int, server_listen_port: int, payload_len: int, timeout: int=15) -> None:
+    def run_server(
+        self,
+        n_packets_expected: int,
+        server_listen_port: int,
+        payload_len: int,
+        timeout: int = 15,
+    ) -> None:
         """
         Receive packets sent from the client. Calculate the latency for each
         packet by comparing the counter value from the packet (the counter value
         at time of transmission) to the current counter value.
         """
-        sock_in = \
-            socket.socket(socket.AF_INET, socket.SOCK_DGRAM, socket.IPPROTO_UDP)
+        sock_in = socket.socket(socket.AF_INET, socket.SOCK_DGRAM, socket.IPPROTO_UDP)
         sock_in.bind(("0.0.0.0", server_listen_port))
 
         print("UDP server running...")
@@ -242,13 +273,13 @@ the latencies of each packet received from the client.
                 payload = data.rstrip(a)
                 (ids[packet_c], packet_ns[packet_c], send_time) = pickle.loads(payload)
                 latency_mss[packet_c] = (recv_time - send_time) * 1e3
-                #packets[packet_c] = (id, packet_n, packet_len, latency_ms, send_time, recv_time)
-                send_times[packet_c]  = send_time
-                recv_times[packet_c]  = recv_time
+                # packets[packet_c] = (id, packet_n, packet_len, latency_ms, send_time, recv_time)
+                send_times[packet_c] = send_time
+                recv_times[packet_c] = recv_time
 
                 packet_c += 1
 
-                #if packet_c % 2000 == 0:
+                # if packet_c % 2000 == 0:
                 #    print("%d packets received so far" % packet_c)
 
         except socket.timeout:
@@ -261,4 +292,15 @@ the latencies of each packet received from the client.
 
         print("Received %d packets" % packet_c)
 
-        self.save_packet_latencies((ids[:packet_c], packet_ns[:packet_c], packet_lens[:packet_c], latency_mss[:packet_c], send_times[:packet_c], recv_times[:packet_c]), n_packets_expected, self.test_output_filename)
+        self.save_packet_latencies(
+            (
+                ids[:packet_c],
+                packet_ns[:packet_c],
+                packet_lens[:packet_c],
+                latency_mss[:packet_c],
+                send_times[:packet_c],
+                recv_times[:packet_c],
+            ),
+            n_packets_expected,
+            self.test_output_filename,
+        )

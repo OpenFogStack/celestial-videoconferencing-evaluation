@@ -1,15 +1,7 @@
-model = "SGP4"
-
 bbox = [-6.8596, -11.0020, 19.7872, 22.2767]
-interval = 5
-animation = false
-hosts = ["192.168.0.11:1969", "192.168.0.12:1969", "192.168.0.13:1969", "192.168.0.14:1969"]
-peeringhosts = ["192.168.0.11:1970", "192.168.0.12:1970", "192.168.0.13:1970", "192.168.0.14:1970"]
-database = true
-dbhost = "192.168.0.10:8000"
 
-[sgp4params]
-starttime = 2021-05-01T12:00:00+00:00
+resolution = 5
+duration = 600
 
 [networkparams]
 islpropagation = 3.336e-6

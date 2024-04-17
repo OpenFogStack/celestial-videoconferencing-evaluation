@@ -21,16 +21,37 @@
 all: client.img server.img tracker.img alt-tracker.img
 
 client.img: client/client.sh client/client-base.sh client/workload.csv client/ultra_ping
-	@docker run --rm -v $(PWD)/client/client.sh:/app.sh -v $(PWD)/client/client-base.sh:/base.sh -v $(PWD)/client/workload.csv:/files/workload.csv -v $(PWD)/client/ultra_ping:/files/ultra_ping -v $(PWD)/client:/opt/code --privileged rootfsbuilder $@
+	@docker run --rm \
+		-v $(PWD)/client/client.sh:/app.sh \
+		-v $(PWD)/client/client-base.sh:/base.sh \
+		-v $(PWD)/client/workload.csv:/files/workload.csv \
+		-v $(PWD)/client/ultra_ping:/files/ultra_ping \
+		-v $(PWD)/client:/opt/code \
+		--privileged rootfsbuilder $@
 
 alt-tracker.img: tracker/tracker.bin tracker/alt-tracker.sh
-	@docker run --rm -v $(PWD)/tracker/alt-tracker.sh:/app.sh -v $(PWD)/tracker/tracker-base.sh:/base.sh -v $(PWD)/tracker/tracker.bin:/files/tracker.bin -v $(PWD)/tracker:/opt/code --privileged rootfsbuilder $@
+	@docker run --rm \
+	-v $(PWD)/tracker/alt-tracker.sh:/app.sh \
+	-v $(PWD)/tracker/tracker-base.sh:/base.sh \
+	-v $(PWD)/tracker/tracker.bin:/files/tracker.bin \
+	-v $(PWD)/tracker:/opt/code \
+	--privileged rootfsbuilder $@
 
 tracker.img: tracker/tracker.bin tracker/tracker.sh
-	@docker run --rm -v $(PWD)/tracker/tracker.sh:/app.sh -v $(PWD)/tracker/tracker-base.sh:/base.sh -v $(PWD)/tracker/tracker.bin:/files/tracker.bin -v $(PWD)/tracker:/opt/code --privileged rootfsbuilder $@
+	@docker run --rm \
+	-v $(PWD)/tracker/tracker.sh:/app.sh \
+	-v $(PWD)/tracker/tracker-base.sh:/base.sh \
+	-v $(PWD)/tracker/tracker.bin:/files/tracker.bin \
+	-v $(PWD)/tracker:/opt/code \
+	--privileged rootfsbuilder $@
 
 tracker/tracker.bin: tracker/cmd/tracker tracker/go.mod
 	@cd tracker ; GOOS=linux GOARCH=amd64 go build -o tracker.bin ./cmd/tracker
 
 server.img: server/server.sh server/multiply.nft server/server-base.sh
-	@docker run --rm -v $(PWD)/server/server.sh:/app.sh -v $(PWD)/server/server-base.sh:/base.sh -v $(PWD)/server/multiply.nft:/files/multiply.nft -v $(PWD)/server:/opt/code --privileged rootfsbuilder $@
+	@docker run --rm \
+	-v $(PWD)/server/server.sh:/app.sh \
+	-v $(PWD)/server/server-base.sh:/base.sh \
+	-v $(PWD)/server/multiply.nft:/files/multiply.nft
+	-v $(PWD)/server:/opt/code \
+	--privileged rootfsbuilder $@

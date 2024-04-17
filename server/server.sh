@@ -19,9 +19,7 @@
 #
 
 
-GATEWAY_IP=$(/sbin/ip route | awk '/default/ { print $3 }')
 MY_IP=$(/sbin/ip route | sed -n '2 p' | awk '{print $9}')
-echo nameserver "$GATEWAY_IP" > /etc/resolv.conf
 
 sed -i -e "s/%%%HOST%%%/$MY_IP/g" multiply.nft
 
