@@ -1,7 +1,7 @@
 define HOST_A=%%%HOST%%%
-define HOST_B1=10.255.0.6
-define HOST_B2=10.255.0.10
-define HOST_B3=10.255.0.14
+define HOST_B1=10.0.0.6
+define HOST_B2=10.0.0.10
+define HOST_B3=10.0.0.14
 
 table ip multiply
 delete table ip multiply

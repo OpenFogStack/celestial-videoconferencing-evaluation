@@ -21,7 +21,6 @@ package main
 import (
 	"encoding/json"
 	"fmt"
-	"math"
 	"net/http"
 
 	log "github.com/sirupsen/logrus"
@@ -49,9 +48,12 @@ func getActiveSats(shells int, gateway *string) ([]map[int]struct{}, error) {
 		}
 
 		var info struct {
-			ActiveSats []struct {
-				Shell int
-				Sat   int
+			Sats []struct {
+				Identifier struct {
+					Shell int
+					Sat   int
+				}
+				Active bool
 			}
 		}
 
@@ -64,8 +66,11 @@ func getActiveSats(shells int, gateway *string) ([]map[int]struct{}, error) {
 			return active, err
 		}
 
-		for _, v := range info.ActiveSats {
-			active[s][v.Sat] = struct{}{}
+		for _, v := range info.Sats {
+			if !v.Active {
+				continue
+			}
+			active[s][v.Identifier.Sat] = struct{}{}
 		}
 	}
 
@@ -94,9 +99,8 @@ func getScore(shell int, sat int, id string, gateway *string) (float64, float64,
 	}
 
 	var info struct {
-		Paths []struct {
-			Delay float64
-		}
+		Blocked bool
+		Delay   float64
 	}
 
 	err = json.NewDecoder(resp.Body).Decode(&info)
@@ -106,19 +110,13 @@ func getScore(shell int, sat int, id string, gateway *string) (float64, float64,
 		return 0.0, 0.0, err
 	}
 
-	if len(info.Paths) == 0 {
-		log.Error("no path found?")
+	if info.Blocked {
+		log.Errorf("path blocked from gst %s to sat %d %d", id, shell, sat)
 		return 0.0, 0.0, err
 	}
 
 	// find minimum delay
-	minDelay := math.MaxFloat64
-
-	for _, p := range info.Paths {
-		if p.Delay < minDelay {
-			minDelay = p.Delay
-		}
-	}
+	minDelay := info.Delay
 
 	// log.Debugf("delay %f, score %f, for path from gst %s to sat %d %d", minDelay, minDelay * minDelay, id, shell, sat, )
 
@@ -147,9 +145,8 @@ func getGSTDist(name string, id string, gateway *string) (float64, error) {
 	}
 
 	var info struct {
-		Paths []struct {
-			Delay float64
-		}
+		Blocked bool
+		Delay   float64
 	}
 
 	err = json.NewDecoder(resp.Body).Decode(&info)
@@ -159,19 +156,13 @@ func getGSTDist(name string, id string, gateway *string) (float64, error) {
 		return 0.0, err
 	}
 
-	if len(info.Paths) == 0 {
-		log.Error("no path found?")
+	if info.Blocked {
+		log.Errorf("path blocked from gst %s to gst %s", id, name)
 		return 0.0, err
 	}
 
 	// find minimum delay
-	minDelay := math.MaxFloat64
-
-	for _, p := range info.Paths {
-		if p.Delay < minDelay {
-			minDelay = p.Delay
-		}
-	}
+	minDelay := info.Delay
 
 	// log.Debugf("delay %f, for path from gst %s to gst %s", minDelay, minDelay * minDelay, id, name)
 
@@ -195,7 +186,7 @@ func getShellNum(gateway *string) int {
 	}
 
 	var constellation struct {
-		Shells int
+		Shells []struct{}
 	}
 
 	err = json.NewDecoder(resp.Body).Decode(&constellation)
@@ -205,5 +196,5 @@ func getShellNum(gateway *string) int {
 		panic(err)
 	}
 
-	return constellation.Shells
+	return len(constellation.Shells)
 }

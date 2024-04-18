@@ -19,19 +19,22 @@
 #
 
 
-GATEWAY_IP=$(/sbin/ip route | awk '/default/ { print $3 }')
 MY_IP=$(/sbin/ip route | sed -n '2 p' | awk '{print $9}')
-echo nameserver "$GATEWAY_IP" > /etc/resolv.conf
+
+echo "STARTING SERVER"
 
 sed -i -e "s/%%%HOST%%%/$MY_IP/g" multiply.nft
 
 ip link add name vethinj up type veth peer name vethgw
 ip link set vethgw up
+
 sysctl -w net.ipv4.conf.vethgw.forwarding=1
 sysctl -w net.ipv4.conf.vethgw.accept_local=1
 sysctl -w net.ipv4.conf.vethgw.rp_filter=0
 sysctl -w net.ipv4.conf.all.rp_filter=0
 ip route add $MY_IP/32 dev vethinj
+
+sleep 1
 
 nft -f multiply.nft
 

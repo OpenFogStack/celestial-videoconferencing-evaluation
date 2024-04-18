@@ -145,7 +145,7 @@ func updateClientsAlt(interval *int, gateway *string) {
 
 			v.Set("server", "server.gst.celestial")
 			v.Set("satID", "4")
-			v.Set("shellID", "-1")
+			v.Set("shellID", "0")
 
 			c, err := httpClient.PostForm(fmt.Sprintf("http://%s.gst.celestial:%d", id, c.http), v)
 
@@ -418,17 +418,17 @@ func main() {
 
 	clients = map[string]client{
 		"1": {
-			addr: "10.255.0.6",
+			addr: "10.0.0.6",
 			udp:  3000,
 			http: 8000,
 		},
 		"2": {
-			addr: "10.255.0.10",
+			addr: "10.0.0.10",
 			udp:  3000,
 			http: 8000,
 		},
 		"3": {
-			addr: "10.255.0.14",
+			addr: "10.0.0.14",
 			udp:  3000,
 			http: 8000,
 		},

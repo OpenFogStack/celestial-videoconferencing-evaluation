@@ -18,31 +18,9 @@
 # along with this program. If not, see <http://www.gnu.org/licenses/>.
 #
 
-rc-service chronyd start
-
-IP=$(/sbin/ip route | awk '/default/ { print $3 }')
-
-echo nameserver "$IP" > /etc/resolv.conf
-
-chronyc tracking
-
-chronyc -a makestep
-
-sleep 10
-
-chronyc tracking
-
-chronyc -a makestep
-
-chronyc tracking
-
-sleep 10
-
-chronyc tracking
-
 echo "STARTING CLIENT"
 
-NAME=$(curl -s "$IP"/self | python3 -c 'import sys, json; print(json.load(sys.stdin)["name"])')
+NAME=$(curl -s info.celestial/self | python3 -c 'import sys, json; print(json.load(sys.stdin)["identifier"]["name"])')
 
 echo "$NAME"
 cd ultra_ping || exit
