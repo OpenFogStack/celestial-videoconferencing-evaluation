@@ -20,7 +20,7 @@
 
 echo "STARTING CLIENT"
 
-NAME=$(curl -s info.celestial/self | python3 -c 'import sys, json; print(json.load(sys.stdin)["name"])')
+NAME=$(curl -s info.celestial/self | python3 -c 'import sys, json; print(json.load(sys.stdin)["identifier"]["name"])')
 
 echo "$NAME"
 cd ultra_ping || exit

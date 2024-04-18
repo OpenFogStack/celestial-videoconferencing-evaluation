@@ -56,6 +56,8 @@ build `client-linux.bin` and `server-linux.bin` Linux kernels.
 Note that using off-the-shelf kernels will not work in most situations since
 the server needs support for `NFTables` duplication and clients need to trust
 the host's randomness pool.
+However, you can use the [default Celestial kernel](https://openfogstack.github.io/celestial/kernel.html)
+for clients.
 
 ### Copying Everything Over
 

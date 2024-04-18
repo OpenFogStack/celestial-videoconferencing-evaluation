@@ -203,7 +203,7 @@ the latencies of each packet received from the client.
         self.target_address = None
         self.target_port = listen_port
 
-        httpd = http.server.HTTPServer(("", http_port), Handler)
+        httpd = http.server.HTTPServer(("0.0.0.0", http_port), Handler)
 
         h = td.Thread(target=httpd.serve_forever)
         h.start()

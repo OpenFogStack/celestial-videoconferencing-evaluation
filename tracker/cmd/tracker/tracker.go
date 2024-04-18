@@ -145,7 +145,7 @@ func updateClientsAlt(interval *int, gateway *string) {
 
 			v.Set("server", "server.gst.celestial")
 			v.Set("satID", "4")
-			v.Set("shellID", "-1")
+			v.Set("shellID", "0")
 
 			c, err := httpClient.PostForm(fmt.Sprintf("http://%s.gst.celestial:%d", id, c.http), v)
 
