@@ -247,6 +247,10 @@ func updateClients(interval *int, gateway *string) {
 		totalActive := 0
 
 		for shell, activeSats := range active {
+			if shell == 0 {
+				continue
+			}
+
 			log.Debugf("active satellites in shell %d: %#v", shell, activeSats)
 			totalActive += len(activeSats)
 		}
@@ -265,6 +269,10 @@ func updateClients(interval *int, gateway *string) {
 		//var bestDist map[string]float64
 
 		for shell, sats := range active {
+			if shell == 0 {
+				continue
+			}
+
 			for sat := range sats {
 				score := 0.0
 				dist := make(map[string]float64)

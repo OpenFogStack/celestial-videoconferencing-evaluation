@@ -30,7 +30,7 @@ func getActiveSats(shells int, gateway *string) ([]map[int]struct{}, error) {
 
 	active := make([]map[int]struct{}, shells)
 
-	for s := 0; s < shells; s++ {
+	for s := 1; s <= shells; s++ {
 		active[s] = make(map[int]struct{})
 
 		resp, err := http.Get(fmt.Sprintf("http://%s/shell/%d", *gateway, s))
@@ -51,7 +51,7 @@ func getActiveSats(shells int, gateway *string) ([]map[int]struct{}, error) {
 			Sats []struct {
 				Identifier struct {
 					Shell int
-					Sat   int
+					Id    int
 				}
 				Active bool
 			}
@@ -70,7 +70,7 @@ func getActiveSats(shells int, gateway *string) ([]map[int]struct{}, error) {
 			if !v.Active {
 				continue
 			}
-			active[s][v.Identifier.Sat] = struct{}{}
+			active[s][v.Identifier.Id] = struct{}{}
 		}
 	}
 
