@@ -99,8 +99,8 @@ func getScore(shell int, sat int, id string, gateway *string) (float64, float64,
 	}
 
 	var info struct {
-		Blocked bool
-		Delay   float64
+		Blocked bool    `json:"blocked"`
+		DelayUs float64 `json:"delay_us"`
 	}
 
 	err = json.NewDecoder(resp.Body).Decode(&info)
@@ -116,7 +116,7 @@ func getScore(shell int, sat int, id string, gateway *string) (float64, float64,
 	}
 
 	// find minimum delay
-	minDelay := info.Delay
+	minDelay := info.DelayUs
 
 	// log.Debugf("delay %f, score %f, for path from gst %s to sat %d %d", minDelay, minDelay * minDelay, id, shell, sat, )
 
