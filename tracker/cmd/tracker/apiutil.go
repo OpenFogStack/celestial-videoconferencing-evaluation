@@ -26,9 +26,9 @@ import (
 	log "github.com/sirupsen/logrus"
 )
 
-func getActiveSats(shells int, gateway *string) ([]map[int]struct{}, error) {
+func getActiveSats(shells int, gateway *string) (map[int]map[int]struct{}, error) {
 
-	active := make([]map[int]struct{}, shells)
+	active := make(map[int]map[int]struct{}, shells)
 
 	for s := 1; s <= shells; s++ {
 		active[s] = make(map[int]struct{})
